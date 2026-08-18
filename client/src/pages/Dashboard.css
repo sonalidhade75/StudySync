@@ -1,0 +1,332 @@
+/* --- Global Reset & Box Sizing --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* --- Main Dashboard Container --- */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f1f5f9;
+  overflow: hidden;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+  width: 260px;
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 1.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.sidebar h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  padding-left: 0.5rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar-menu li {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu li:hover,
+.sidebar-menu li.active {
+  background-color: #4f46e5;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+}
+
+/* --- Main Content Area --- */
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #f8fafc;
+}
+
+/* --- Planner Sections / Main Cards --- */
+.planner-section {
+  background: #ffffff;
+  padding: 1.75rem !important;
+  border-radius: 14px !important;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1.5rem !important;
+}
+
+/* --- Stats Cards Grid (Total Tasks & Study Hours wrapped cleanly) --- */
+.dashboard-content .grid-cols-2, 
+.planner-section .grid,
+.dashboard-content .grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  gap: 1.25rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Professional Card Styling for Stats (Tasks & Study Hours) */
+.dashboard-content .bg-white.p-4,
+.dashboard-content .p-4.rounded-xl,
+.planner-section .bg-white.p-4, 
+.planner-section .p-4.rounded-xl {
+  background: #ffffff !important;
+  padding: 1.5rem !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* --- Study Group Cards Layout & Spacing --- */
+.planner-section .bg-white.border {
+  padding: 1.25rem !important;
+  margin-bottom: 1rem !important;
+  border-radius: 10px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* --- Row alignment inside group cards: push Enter Room button to RIGHT side --- */
+.planner-section .flex.flex-col.sm\:flex-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+}
+
+.planner-section .flex.flex-col.sm\:flex-row button {
+  width: auto !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+  padding: 0.55rem 1.1rem !important;
+  font-size: 0.85rem !important;
+}
+
+/* --- Virtual Room Inside Section --- */
+.planner-section .mt-4.p-4.bg-slate-50 {
+  padding: 1.25rem !important;
+  margin-top: 1rem !important;
+  border-radius: 10px !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* --- Form Inputs & Textareas Spacing --- */
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #1e293b;
+  margin-bottom: 1rem !important;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus, 
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* --- Buttons Styling --- */
+button, .btn-primary {
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.15rem;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.87rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.3rem 0.4rem 0.5rem 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.15);
+}
+
+button:hover, .btn-primary:hover {
+  background-color: #4338ca;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+  transform: translateY(-1px);
+}
+
+/* --- Feature Tab Buttons (Chat, Whiteboard, etc.) --- */
+.planner-section .flex.flex-wrap.gap-1\.5,
+.planner-section .flex.flex-wrap {
+  gap: 0.5rem !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.planner-section .flex.flex-wrap button {
+  padding: 0.45rem 0.85rem !important;
+  font-size: 0.82rem !important;
+  margin: 0 !important;
+}
+
+/* --- Responsive for Mobile --- */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .sidebar h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .sidebar-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 0.4rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .sidebar-menu li {
+    white-space: nowrap;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+
+  .planner-section {
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .planner-section .flex.flex-col.sm\:flex-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  
+  .planner-section .flex.flex-col.sm\:flex-row button {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+/* --- Space between Section Title / Header and the First Card --- */
+.planner-section h2,
+.planner-section h3:first-child,
+.planner-section .text-lg,
+.planner-section .text-xl,
+.planner-section > div:first-child {
+  margin-bottom: 1.5rem !important; /* हेडिंगच्या खाली योग्य मोकळी जागा */
+}
+
+/* Ensure the grid/cards below the title also have proper spacing */
+.planner-section .grid,
+.dashboard-content .grid {
+  margin-top: 1rem !important;
+}
+
+/* --- Proper Spacing between Section Titles/Headings and Cards --- */
+.planner-section h2,
+.planner-section h3,
+.planner-section .text-lg,
+.planner-section .text-xl,
+.dashboard-content h2,
+.dashboard-content h3 {
+  margin-bottom: 1.5rem !important; /* हेडिंगच्या खाली मोकळी जागा */
+}
+
+/* Ensure the cards/grids below every heading have comfortable top distance */
+.planner-section .grid,
+.planner-section .bg-white.border,
+.planner-section .p-4.rounded-xl {
+  margin-top: 1.25rem !important;
+}
+
+/* --- Exact Spacing Fix between "Manage your progress..." text and card --- */
+.dashboard-content > p:first-of-type,
+.dashboard-content > .text-sm:first-of-type,
+.dashboard-content > .text-muted-foreground:first-of-type,
+.dashboard-content div:has(+ .grid) > p,
+.dashboard-content div:has(+ .planner-section) > p {
+  margin-bottom: 2rem !important; /* टेक्स्टच्या खाली हवी ती मोकळी जागा */
+}
+
+/* Ensure the cards/grid container below it starts with a clean top gap */
+.dashboard-content .grid:first-of-type,
+.dashboard-content .planner-section:first-of-type {
+  margin-top: 1.5rem !important;
+}
+
+/* --- Exact Spacing Fix between "No resources shared yet" text and the Input Bar --- */
+.planner-section p:has(+ input),
+.planner-section div:has(> input[placeholder*="Resource"]),
+.planner-section .text-sm:has(+ input),
+.planner-section .text-muted-foreground:has(+ input),
+.planner-section p:nth-last-of-type(1) + input,
+.planner-section p + div input {
+  margin-top: 1.25rem !important; /* इन्पुट बारच्या वर हवी ती मोकळी जागा */
+}
+
+/* Specific adjustment for the Resource Title input field to keep proper breathing room */
+.planner-section input[placeholder*="Resource"],
+.planner-section input[type="text"]:not(:first-child) {
+  margin-top: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
