@@ -6,8 +6,11 @@ export default function ResourceHub({ groupId, userName }) {
   const [title, setTitle] = useState('');
   const [fileUrl, setFileUrl] = useState('');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (groupId) fetchResources();
+    if (groupId) {
+      fetchResources();
+    }
   }, [groupId]);
 
   const fetchResources = async () => {

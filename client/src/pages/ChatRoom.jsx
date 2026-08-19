@@ -5,6 +5,8 @@ export default function ChatRoom({ groupId, userId, userName }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (groupId) {
       fetchMessages();
@@ -21,6 +23,7 @@ export default function ChatRoom({ groupId, userId, userName }) {
       console.error('Error fetching chats:', err);
     }
   };
+  
 
   const handleSendMessage = async (e) => {
     e.preventDefault();

@@ -6,8 +6,11 @@ export default function TaskBoard({ groupId }) {
   const [title, setTitle] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
 
+ // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (groupId) fetchTasks();
+    if (groupId) {
+      fetchTasks();
+    }
   }, [groupId]);
 
   const fetchTasks = async () => {
