@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 export default function TutorMarketplace({ userName }) {
   const [tutors, setTutors] = useState([]);
@@ -13,7 +14,7 @@ export default function TutorMarketplace({ userName }) {
 
   const fetchTutors = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/tutors');
+      const res = await axios.get(`${API_URL}/api/tutors`);
       setTutors(res.data);
     } catch (err) {
       console.error('Error fetching tutors:', err);
@@ -25,7 +26,7 @@ export default function TutorMarketplace({ userName }) {
     if (!selectedTutor || !slotTime.trim()) return;
 
     try {
-      const res = await axios.post('http://localhost:5001/api/tutors/book', {
+      const res = await axios.post(`${API_URL}/api/tutors/book`, {
         tutorId: selectedTutor._id,
         studentName: userName || 'Student',
         slotTime

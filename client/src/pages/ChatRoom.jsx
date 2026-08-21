@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 export default function ChatRoom({ groupId, userId, userName }) {
   const [messages, setMessages] = useState([]);
@@ -17,7 +18,7 @@ export default function ChatRoom({ groupId, userId, userName }) {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/chats/${groupId}`);
+      const res = await axios.get(`${API_URL}/api/chats/${groupId}`);
       setMessages(res.data);
     } catch (err) {
       console.error('Error fetching chats:', err);
@@ -30,7 +31,7 @@ export default function ChatRoom({ groupId, userId, userName }) {
     if (!newMessage.trim()) return;
 
     try {
-      await axios.post('http://localhost:5001/api/chats', {
+      await axios.post(`${API_URL}/api/chats`, {
         groupId,
         userId,
         userName: userName || 'Student',

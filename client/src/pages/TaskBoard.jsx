@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 export default function TaskBoard({ groupId }) {
   const [tasks, setTasks] = useState([]);
@@ -15,7 +16,7 @@ export default function TaskBoard({ groupId }) {
 
   const fetchTasks = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/tasks/${groupId}`);
+      const res = await axios.get(`${API_URL}/api/tasks/${groupId}`);
       setTasks(res.data);
     } catch (err) {
       console.error('Error fetching tasks:', err);
@@ -27,7 +28,7 @@ export default function TaskBoard({ groupId }) {
     if (!title.trim() || !assignedTo.trim()) return;
 
     try {
-      await axios.post('http://localhost:5001/api/tasks', {
+      await axios.post(`${API_URL}/api/tasks`, {
         groupId,
         title,
         assignedTo
@@ -43,7 +44,7 @@ export default function TaskBoard({ groupId }) {
   const toggleStatus = async (id, currentStatus) => {
     const newStatus = currentStatus === 'Pending' ? 'Completed' : 'Pending';
     try {
-      await axios.patch(`http://localhost:5001/api/tasks/${id}`, { status: newStatus });
+      await axios.patch(`${API_URL}/api/tasks/${id}`, { status: newStatus });
       fetchTasks();
     } catch (err) {
       console.error('Error updating task status:', err);

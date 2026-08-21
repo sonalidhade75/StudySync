@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 export default function QuizRoom({ groupId, userId, userName }) {
   const [quizzes, setQuizzes] = useState([]);
@@ -19,7 +20,7 @@ export default function QuizRoom({ groupId, userId, userName }) {
   useEffect(() => {
     const fetchQuizzes = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/quizzes/${groupId}`);
+        const res = await axios.get(`${API_URL}/api/quizzes/${groupId}`);
         setQuizzes(res.data);
       } catch (err) {
         console.error('Error fetching quizzes:', err);
@@ -33,7 +34,7 @@ export default function QuizRoom({ groupId, userId, userName }) {
   const fetchQuizzes = async () => {
     try {
       // Backend port corrected from 5000 to 5001 to match Dashboard & Server
-      const res = await axios.get(`http://localhost:5001/api/quizzes/${groupId}`);
+      const res = await axios.get(`${API_URL}/api/quizzes/${groupId}`);
       setQuizzes(res.data);
     } catch (err) {
       console.error('Error fetching quizzes:', err);
@@ -48,7 +49,7 @@ export default function QuizRoom({ groupId, userId, userName }) {
         title,
         questions: [{ questionText, options, correctOptionIndex }]
       };
-      await axios.post('http://localhost:5001/api/quizzes', newQuizData);
+      await axios.post(`${API_URL}/api/quizzes`, newQuizData);
       setTitle('');
       setQuestionText('');
       setOptions(['', '', '', '']);
@@ -78,7 +79,7 @@ export default function QuizRoom({ groupId, userId, userName }) {
       // Quiz Finished, Submit Score using updatedScore to avoid state delay
       setShowResult(true);
       try {
-        await axios.post(`http://localhost:5001/api/quizzes/${quiz._id}/submit`, {
+        await axios.post(`${API_URL}/api/quizzes/${quiz._id}/submit`, {
           userId,
           userName: userName || 'Student',
           score: updatedScore

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../api';
 
 export default function ResourceHub({ groupId, userName }) {
   const [resources, setResources] = useState([]);
@@ -15,7 +16,7 @@ export default function ResourceHub({ groupId, userName }) {
 
   const fetchResources = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/resources/${groupId}`);
+      const res = await axios.get(`${API_URL}/api/resources/${groupId}`);
       setResources(res.data);
     } catch (err) {
       console.error('Error fetching resources:', err);
@@ -27,7 +28,7 @@ export default function ResourceHub({ groupId, userName }) {
     if (!title.trim() || !fileUrl.trim()) return;
 
     try {
-      await axios.post('http://localhost:5001/api/resources', {
+      await axios.post(`${API_URL}/api/resources`, {
         groupId,
         title,
         fileUrl,

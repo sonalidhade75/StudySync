@@ -7,9 +7,10 @@ import ChatRoom from './ChatRoom';
 import TaskBoard from './TaskBoard';
 import ResourceHub from './ResourceHub';
 import TutorMarketplace from './TutorMarketplace';
+import { API_URL } from '../api';
 
 // Socket connection (Backend URL)
-const socket = io('http://localhost:5001');
+const socket = io(`${API_URL}`);
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview'); 
@@ -38,7 +39,7 @@ function Dashboard() {
 
   const fetchGroups = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/groups/user/${userId}`);
+      const res = await axios.get(`${API_URL}/api/groups/user/${userId}`);
       setMyGroups(res.data);
     } catch (err) {
       console.error('Error fetching groups:', err);
@@ -48,7 +49,7 @@ function Dashboard() {
  useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/groups/user/${userId}`);
+        const res = await axios.get(`${API_URL}/api/groups/user/${userId}`);
         setMyGroups(res.data);
       } catch (err) {
         console.error('Error fetching groups:', err);
@@ -280,7 +281,7 @@ function Dashboard() {
                   const description = e.target.groupDesc.value;
                   
                   try {
-                    const res = await axios.post('http://localhost:5001/api/groups/create', { name, description, userId });
+                    const res = await axios.post(`${API_URL}/api/groups/create`, { name, description, userId });
                     alert(`Group Created Successfully! Invite Code: ${res.data.group.inviteCode}`);
                     e.target.reset();
                     fetchGroups(); 
@@ -303,7 +304,7 @@ function Dashboard() {
                   const inviteCode = e.target.inviteCode.value;
                   
                   try {
-                    const res = await axios.post('http://localhost:5001/api/groups/join', { inviteCode, userId });
+                    const res = await axios.post(`${API_URL}/api/groups/join`, { inviteCode, userId });
                     alert(res.data.message || 'Joined Group Successfully!');
                     e.target.reset();
                     fetchGroups(); 
@@ -480,7 +481,7 @@ function Dashboard() {
                           const content = e.target.resContent.value;
 
                           try {
-                            await axios.post(`http://localhost:5001/api/groups/${group._id}/resources`, { title, content, userId });
+                            await axios.post(`${API_URL}/api/groups/${group._id}/resources`, { title, content, userId });
                             alert('Resource added successfully!');
                             e.target.reset();
                             fetchGroups();

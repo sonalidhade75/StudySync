@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Auth.css';
+import { API_URL } from '../api';
 
 function Register() {
   const [name, setName] = useState('');
@@ -10,11 +11,11 @@ function Register() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Backend API la data pathavine
-      const response = await axios.post('http://localhost:5001/api/auth/register', {
+      const response = await axios.post(`${API_URL}/api/auth/register`, {
         name,
         email,
         password
