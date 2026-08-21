@@ -1,3 +1,3 @@
 export const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://studysync-3ysd.onrender.com' 
-  : '${API_URL}';
+  : 'http://localhost:5001';
